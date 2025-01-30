@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import axios from 'axios'
+import AddTime from './AddTime'
 
 const headers = {
   "ngrok-skip-browser-warning": "123"
@@ -26,6 +27,7 @@ function TimesFutebol() {
 
   return <>
     <h3>Times de Futebol</h3>
+    <AddTime />
     <table>
       <thead>
         <tr>
