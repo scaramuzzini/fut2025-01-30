@@ -25,9 +25,13 @@ function TimesFutebol() {
     console.log(times);
   }
 
+  const refreshTimes = (novoTime) => {
+    setTimes([...times, novoTime]);
+  }
+
   return <>
     <h3>Times de Futebol</h3>
-    <AddTime />
+    <AddTime onTimeAdicionado={refreshTimes} />
     <table>
       <thead>
         <tr>

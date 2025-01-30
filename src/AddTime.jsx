@@ -5,15 +5,17 @@ const headers = {
     "ngrok-skip-browser-warning": "123"
   }
 
-export default function AddTime() {
+export default function AddTime({onTimeAdicionado}) {
     const [nome,setNome] = useState('');
+    const [estadio,setEstadio] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(nome);
 
         const novoTime = {
-            nome: nome
+            nome: nome,
+            estadio: estadio
         };
 
         const response = await axios.post('https://ecb7-45-236-9-52.ngrok-free.app/times',
@@ -24,6 +26,8 @@ export default function AddTime() {
         );
         console.log(response);
         setNome('');
+        setEstadio('');
+        onTimeAdicionado(response.data);
     };
     return (
         <>
@@ -35,8 +39,16 @@ export default function AddTime() {
                         value={nome}
                         onChange={(e) => setNome(e.target.value)}
                         />
-                    <input type="submit" value="Salvar" />
                 </label>
+                <br/>
+                <label>
+                    Estádio:
+                    <input type="text" name="estadio" 
+                        value={estadio}
+                        onChange={(e) => setEstadio(e.target.value)}
+                        />
+                </label>
+                <input type="submit" value="Salvar" />
             </form>
         </>
     )
