@@ -29,6 +29,16 @@ function TimesFutebol() {
     setTimes([...times, novoTime]);
   }
 
+  const handleExcluir = async (id) => {
+    console.log(id);
+    try {
+      await axios.delete(`https://ecb7-45-236-9-52.ngrok-free.app/times/${id}`);
+    } catch (error) {
+      console.error('Não foi possível remover:'+error);
+      alert('erro');
+    }
+  }
+
   return <>
     <h3>Times de Futebol</h3>
     <AddTime onTimeAdicionado={refreshTimes} />
@@ -39,6 +49,7 @@ function TimesFutebol() {
           <th>Títulos</th>
           <th>Estádio</th>
           <th>Ano de Fundação</th>
+          <th>Ações</th>
         </tr>
         </thead>
         <tbody>
@@ -48,6 +59,9 @@ function TimesFutebol() {
               <td>{t.titulos}</td>
               <td>{t.estadio}</td>
               <td>{t.ano_fundacao}</td>
+              <td>
+                <button onClick={() => handleExcluir(t.id)}>Excluir</button>
+              </td>
             </tr>
           ))}
         </tbody>
