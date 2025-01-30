@@ -8,6 +8,7 @@ const headers = {
 
 // https://ecb7-45-236-9-52.ngrok-free.app/times
 function TimesFutebol() {
+  const [times, setTimes] = useState([]);
 
   useEffect(() => {
     fetchTimes();
@@ -18,15 +19,20 @@ function TimesFutebol() {
       'https://ecb7-45-236-9-52.ngrok-free.app/times',
       {headers: headers}
     )
-    console.log(response);
+    console.log(response.data);
+    setTimes(response.data);
+    console.log(times);
   }
 
   return <>
     <h1>Times de Futebol</h1>
     <ul>
-      <li>time1</li>
-      <li>time2</li>
-      <li>time3</li>
+    {
+      times.map((t) => (
+                <li key={t.id}> {t.nome}</li>
+            )
+        )
+      }
     </ul>
   </>
 }
