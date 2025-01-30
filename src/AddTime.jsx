@@ -1,4 +1,9 @@
 import { useState } from "react";
+import axios from 'axios';
+
+const headers = {
+    "ngrok-skip-browser-warning": "123"
+  }
 
 export default function AddTime() {
     const [nome,setNome] = useState('');
@@ -6,6 +11,19 @@ export default function AddTime() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(nome);
+
+        const novoTime = {
+            nome: nome
+        };
+
+        const response = await axios.post('https://ecb7-45-236-9-52.ngrok-free.app/times',
+            novoTime,
+            {
+                headers: headers,
+            }
+        );
+        console.log(response);
+        setNome('');
     };
     return (
         <>
