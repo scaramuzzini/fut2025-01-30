@@ -25,15 +25,27 @@ function TimesFutebol() {
   }
 
   return <>
-    <h1>Times de Futebol</h1>
-    <ul>
-    {
-      times.map((t) => (
-                <li key={t.id}> {t.nome}</li>
-            )
-        )
-      }
-    </ul>
+    <h3>Times de Futebol</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Títulos</th>
+          <th>Estádio</th>
+          <th>Ano de Fundação</th>
+        </tr>
+        </thead>
+        <tbody>
+          {times.map((t) => (
+            <tr key={t.id}>
+              <td>{t.nome}</td>
+              <td>{t.titulos}</td>
+              <td>{t.estadio}</td>
+              <td>{t.ano_fundacao}</td>
+            </tr>
+          ))}
+        </tbody>
+    </table>
   </>
 }
 
